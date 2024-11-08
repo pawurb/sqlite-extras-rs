@@ -1,0 +1,30 @@
+[package]
+authors = ["Pawel Urbanek <contact@pawelurbanek.com>"]
+categories = ["database"]
+description = "Sqlite database insights"
+edition = "2021"
+license = "MIT"
+name = "sqlite-extras"
+readme = "README.md"
+repository = "https://github.com/pawurb/sqlite-extras-rs"
+version = "0.1.0"
+
+[dependencies]
+clap = { version = "4.5.20", features = ["derive"] }
+lazy_static = "1.5.0"
+prettytable-rs = "0.10.0"
+semver = "1.0.23"
+sqlx = { version = "0.8", features = [
+  "sqlite",
+  "chrono",
+  "runtime-tokio-rustls",
+] }
+
+tokio = { version = "1.40", features = ["full"] }
+
+[profile.release]
+lto = true
+
+[[bin]]
+name = "sqlextras"
+path = "bin/main.rs"
