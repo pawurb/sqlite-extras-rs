@@ -1,4 +1,4 @@
-/* The size of indexes, descending by size. */
+/* Metadata of the indexes, descending by size. */
 
 SELECT
     d.name        AS name,

@@ -1,4 +1,4 @@
-/* Size of the tables (excluding indexes), descending by size. */
+/* Metadata of the tables (excluding indexes), descending by size. */
 SELECT
     name,
     payload AS payload_size,

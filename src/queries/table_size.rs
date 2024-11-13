@@ -5,8 +5,8 @@ use super::shared::Query;
 #[derive(Debug, Clone)]
 pub struct TableSize {
     pub name: String,
-    pub payload_size: String,
-    pub unused_size: String,
+    pub payload_size: u64,
+    pub unused_size: u64,
     pub vacuum_size: u64,
     pub page_size: u64,
     pub pages: u64,
@@ -49,6 +49,6 @@ impl Query for TableSize {
     }
 
     fn read_file() -> String {
-        include_str!("../sql/index_size.sql").to_string()
+        include_str!("../sql/table_size.sql").to_string()
     }
 }

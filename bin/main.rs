@@ -1,6 +1,8 @@
 use clap::{Parser, Subcommand};
 use sqlite_extras::{
-    index_size, render_table, table_size, IndexSize, Query, SQExtrasError, TableSize,
+    compile_options, index_size, integrity_check, pragma, render_table, sequence_number,
+    table_size, total_size, CompileOptions, IndexSize, IntegrityCheck, Pragma, Query,
+    SQExtrasError, SequenceNumber, TableSize, TotalSize,
 };
 
 #[derive(Parser, Debug)]
@@ -22,6 +24,16 @@ pub enum SQSubcommand {
     TableSize,
     #[command(about = extract_desc(&IndexSize::description()))]
     IndexSize,
+    #[command(about = extract_desc(&IntegrityCheck::description()))]
+    IntegrityCheck,
+    #[command(about = extract_desc(&Pragma::description()))]
+    Pragma,
+    #[command(about = extract_desc(&TotalSize::description()))]
+    TotalSize,
+    #[command(about = extract_desc(&CompileOptions::description()))]
+    CompileOptions,
+    #[command(about = extract_desc(&SequenceNumber::description()))]
+    SequenceNumber,
 }
 
 #[tokio::main]
@@ -40,6 +52,11 @@ async fn execute() -> Result<(), SQExtrasError> {
     match args.cmd {
         SQSubcommand::TableSize => render_table(table_size().await?),
         SQSubcommand::IndexSize => render_table(index_size().await?),
+        SQSubcommand::IntegrityCheck => render_table(integrity_check().await?),
+        SQSubcommand::Pragma => render_table(pragma().await?),
+        SQSubcommand::TotalSize => render_table(total_size().await?),
+        SQSubcommand::CompileOptions => render_table(compile_options().await?),
+        SQSubcommand::SequenceNumber => render_table(sequence_number().await?),
     }
 
     Ok(())
