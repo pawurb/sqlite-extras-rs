@@ -18,6 +18,24 @@ export DATABASE_URL="sqlite://your_database.db"
 
 You can use `sqlextras` shell command:
 
+```
+Usage: sqlextras <COMMAND>
+
+Commands:
+  table-size       Metadata of the tables (excluding indexes), descending by size
+  index-size       Metadata of the indexes, descending by size
+  integrity-check  Run integrity checks on the database
+  pragma           List values of PRAGMAs (settings)
+  total-size       The total size of all tables and indexes
+  compile-options  List the compile-time options used when building SQLite
+  sequence-number  Sequence numbers of autoincrement columns
+  help             Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help (see more with '--help')
+  -V, --version  Print version
+```
+
 ## Available queries
 
 ### `total_size`
