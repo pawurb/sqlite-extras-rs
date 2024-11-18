@@ -20,19 +20,19 @@ pub struct SQExtrasArgs {
 
 #[derive(Subcommand, Debug)]
 pub enum SQSubcommand {
-    #[command(about = extract_desc(&TableSize::description()))]
+    #[command(about = &TableSize::description())]
     TableSize,
-    #[command(about = extract_desc(&IndexSize::description()))]
+    #[command(about = &IndexSize::description())]
     IndexSize,
-    #[command(about = extract_desc(&IntegrityCheck::description()))]
+    #[command(about = &IntegrityCheck::description())]
     IntegrityCheck,
-    #[command(about = extract_desc(&Pragma::description()))]
+    #[command(about = &Pragma::description())]
     Pragma,
-    #[command(about = extract_desc(&TotalSize::description()))]
+    #[command(about = &TotalSize::description())]
     TotalSize,
-    #[command(about = extract_desc(&CompileOptions::description()))]
+    #[command(about = &CompileOptions::description())]
     CompileOptions,
-    #[command(about = extract_desc(&SequenceNumber::description()))]
+    #[command(about = &SequenceNumber::description())]
     SequenceNumber,
 }
 
@@ -60,17 +60,4 @@ async fn execute() -> Result<(), SQExtrasError> {
     }
 
     Ok(())
-}
-
-fn extract_desc(desc: &str) -> String {
-    if let (Some(start), Some(end)) = (desc.find("/*"), desc.find("*/")) {
-        let extracted = &desc[start + 2..end];
-        let mut trimmed = extracted.trim().to_string();
-        if trimmed.ends_with('.') {
-            trimmed.pop();
-        }
-        trimmed
-    } else {
-        desc.to_string()
-    }
 }
